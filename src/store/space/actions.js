@@ -6,14 +6,19 @@ export const fetchSpacesSuccess = (spaceList) => ({
   payload: spaceList,
 });
 
-export const fetchSpaces = () => {
-  return async (dispatch, getState) => {
-    const response = await axios.get(`${apiUrl}/`);
-    console.log("after api call space", response);
-    const spaceaList = response.data;
-    dispatch(fetchSpacesSuccess(spaceaList));
-  };
-};
+export async function fetchSpaces(dispatch, getState) {
+  try {
+    const spaces = getState().space.spaces;
+    if (!spaces.length) {
+      const response = await axios.get(`${apiUrl}/spaces`);
+      console.log("after api call space", response);
+      const spaceList = response.data;
+      dispatch(fetchSpacesSuccess(spaceList));
+    }
+  } catch (e) {
+    console.log(e.message);
+  }
+}
 
 // 1. its two function because of the thunk
 // 2. we have an API call in this function

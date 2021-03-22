@@ -1,9 +1,10 @@
 import React from "react";
+import SpaceList from "../components/SpaceList";
 
 export default function Space() {
   return (
     <div>
-      <h1>hi</h1>
+      <SpaceList />
     </div>
   );
 }
