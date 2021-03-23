@@ -7,12 +7,13 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import Space from "./pages/Space";
-import MySpace from "./pages/MySpace";
+import SpacePage from "./pages/SpacePage";
+import MySpacePage from "./pages/MySpacePage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
+import SpaceDetailsPage from "./pages/SpaceDeatailsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,10 +29,11 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
-        <Route exact path="/" component={Space} />
-        <Route path="/myspace" component={MySpace} />
+        <Route exact path="/" component={SpacePage} />
+        <Route path="/myspace" component={MySpacePage} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
+        <Route path="/spaces/:id" component={SpaceDetailsPage} />
       </Switch>
     </div>
   );
